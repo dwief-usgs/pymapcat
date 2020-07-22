@@ -34,7 +34,7 @@ Install the package
 
 * pip install git+https://github.com/dwief-usgs/pymapcat.git
 
-**Example 1** First build a catalog.
+**Example 1** Example building a catalog with one group containing one item.
 
 .. code-block:: python
 	
