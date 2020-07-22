@@ -32,7 +32,7 @@ Getting Started
 ---------------
 Install the package
 
-* pip install git+https://github.com/usgs-biolab/publink.git
+* pip install git+https://github.com/dwief-usgs/pymapcat.git
 
 Copyright and License
 ---------------------
