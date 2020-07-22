@@ -22,7 +22,7 @@ Contacts
 
 Purpose
 -------
-
+Python methods to assist in (TerriaJS based) map catalog development.
 
 Requirements
 ------------
@@ -33,6 +33,64 @@ Getting Started
 Install the package
 
 * pip install git+https://github.com/dwief-usgs/pymapcat.git
+
+**Example 1** First build a catalog.
+
+.. code-block:: python
+	
+	# Import packages
+	from pymapcat import pymapcat
+
+        # Create item for group
+        item_name = "item name"
+        item_desc = "item description."
+        source_url = "https://sourceurl.com"
+        visual_type = "esri-mapServer"
+        visual_url = "https://test.gov/arcgis/rest/services/t/MapServer"
+
+        item = pymapcat.BuildItem(item_name, item_desc, source_url, is_open=False)
+        item.add_vis(visual_type, visual_url)
+
+        # Create group for catalog, add item
+        group_name = "Group Name Here"
+        group_desc = "Group description here."
+        group = pymapcat.BuildGroup(group_name, group_desc, is_open=True)
+        group.add_item(item.item)
+
+        # Create catalog
+        catalog = pymapcat.BuildCatalogJson()
+        catalog.add_group(group.group)
+
+        # Display catalog  - see example 1 results
+        catalog.catalog
+
+**Example 1 results** shows catalog item.
+
+.. code-block::
+
+        {'homeCamera': {'west': -178.5, 'south': 13, 'east': -64.5, 'north': 71.5}, 
+        'initialCamera': {'west': -178.5, 'south': 13, 'east': -64.5, 'north': 71.5}, 
+        'initialViewerMode': '2d', 
+        'catalog': [
+                {'name': 
+                'Group Name Here', 'description': 
+                'Group description here.', 
+                'type': 'group', 
+                'isOpen': True, 
+                'preserveOrder': True, 
+                'items': [
+                        {'name': 'item name', 
+                        'description': 'item description', 
+                        'dataSourceUrl': 'https://sourceurl.com', 
+                        'isOpen': False, 'type': 'esri-mapServer', 
+                        'metadataUrl': 'https://sourceurl.com', 
+                        'url': 'https://test.gov/arcgis/rest/services/t/Maperver', 
+                        'useStyleInformationFromService': True, 
+                        'isMappable': True
+                        }
+                ]}
+        ]}
+
 
 Copyright and License
 ---------------------
