@@ -173,6 +173,30 @@ class BuildItem:
 
             del self.item["initialMessage"]
 
+    def add_geojson_data(self, geojson_data):
+        """Add geojson data directly to catalog.
+
+        Parameters
+        ----------
+        geojson_data: geojson
+            Example:
+            {"type": "FeatureCollection", 
+             "crs": {"type": "epsg", 
+             "properties": {"code": "4269"}}, 
+             "features": [
+                 {"type": "Feature", 
+                 "properties": {"name": "test bboxddd","description":"testing bounding box 1234"}, 
+                 "geometry": {"type": "Polygon", "coordinates": [[[-84.5,47.5],[-65.4, 47.5],[-65.4, 24.2],[-84.5,24.2],[-84.5,47.5]]]}}]
+                 }
+
+        """
+
+        self.item["type"] = 'geojson'
+        self.item["isMappable"] = True
+        self.item['data'] = geojson_data
+
+        del self.item["initialMessage"]
+
 
 def export_json(name, data):
     """Export data to JSON file.
